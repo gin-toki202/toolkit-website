@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusKit Dashboard | Online Utility Tools</title> 
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> 
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <header id="mobile-header">
+            <button id="menu-toggle"><i class="fas fa-bars"></i></button>
+            <h2><i class="fas fa-layer-group"></i> NexusKit</h2>
+        </header>
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <h2><i class="fas fa-layer-group"></i> NexusKit</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="nav-item active" onclick="showTool('home', 'Home')"><i class="fas fa-home"></i> Home</li>
+                    <li class="nav-item" onclick="showTool('age', 'Age Calculator')"><i class="fas fa-birthday-cake"></i> Age Calculator</li>
+                    <li class="nav-item" onclick="showTool('temp', 'Temperature Converter')"><i class="fas fa-thermometer-half"></i> Temp Converter</li>
+                    <li class="nav-item" onclick="showTool('qr', 'QR Generator')"><i class="fas fa-qrcode"></i> QR Generator</li>
+                    <li class="nav-item" onclick="showTool('pass', 'Password Generator')"><i class="fas fa-key"></i> Password Gen</li>
+                    <li class="nav-item" onclick="showTool('unit', 'Unit Converter')"><i class="fas fa-balance-scale"></i> Unit Converter</li>
+                    <li class="nav-item" onclick="showTool('img-convert', 'Image Converter')"><i class="fas fa-image"></i> Image Converter</li>
+                </ul>
+            </nav>
+            <div class="compliance-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <p>&copy; 2025 NexusKit</p>
+            </div>
+        </aside>
+
+        <main class="content">
+            
+            <section id="home" class="tool-section active-section">
+                <h1>Welcome to NexusKit</h1>
+                <p>Select a utility from the sidebar or choose a card below to begin.</p>
+                <div class="tools-grid">
+                    <div class="card" onclick="showTool('age', 'Age Calculator')"><i class="fas fa-birthday-cake"></i><h3>Age Calculator</h3></div>
+                    <div class="card" onclick="showTool('temp', 'Temperature Converter')"><i class="fas fa-thermometer-half"></i><h3>Temp Converter</h3></div>
+                    <div class="card" onclick="showTool('qr', 'QR Generator')"><i class="fas fa-qrcode"></i><h3>QR Generator</h3></div>
+                    <div class="card" onclick="showTool('pass', 'Password Generator')"><i class="fas fa-key"></i><h3>Password Gen</h3></div>
+                    <div class="card" onclick="showTool('unit', 'Unit Converter')"><i class="fas fa-balance-scale"></i><h3>Unit Converter</h3></div>
+                    <div class="card" onclick="showTool('img-convert', 'Image Converter')"><i class="fas fa-image"></i><h3>Image Converter</h3></div>
+                </div>
+            </section>
+
+            <section id="age" class="tool-section">
+                <h2>Age Calculator</h2>
+                <div class="tool-workspace">
+                    <label>Enter your Birth Date:</label>
+                    <input type="date" id="age-input">
+                    <div class="button-group">
+                        <button class="action-btn" onclick="calculateAge()">Calculate Age</button>
+                        <button class="secondary-clear-btn" onclick="clearTool('age-input', 'age-result')">Clear</button>
+                    </div>
+                    <p class="result-text" id="age-result"></p>
+                </div>
+            </section>
+
+            <section id="temp" class="tool-section">
+                <h2>Temperature Converter</h2>
+                <div class="tool-workspace">
+                    <div class="input-group">
+                        <input type="number" id="temp-input" placeholder="Enter value">
+                        <select id="temp-type">
+                            <option value="c-to-f">Celsius to Fahrenheit</option>
+                            <option value="f-to-c">Fahrenheit to Celsius</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button class="action-btn" onclick="convertTemp()">Convert</button>
+                        <button class="secondary-clear-btn" onclick="clearTool('temp-input', 'temp-result')">Clear</button>
+                    </div>
+                    <p class="result-text" id="temp-result"></p>
+                </div>
+            </section>
+
+            <section id="qr" class="tool-section">
+                <h2>QR Code Generator</h2>
+                <div class="tool-workspace">
+                    <input type="text" id="qr-text" placeholder="Enter text or URL here...">
+                    <div class="button-group">
+                        <button class="action-btn" onclick="generateQR()">Generate QR</button>
+                        <button class="secondary-clear-btn" onclick="clearTool('qr-text', 'qr-container', true)">Clear</button>
+                    </div>
+                    
+                    <div id="qr-container">
+                        </div>
+                    
+                    <button id="qr-download-btn" class="secondary-btn" style="display:none;" onclick="downloadQR()">
+                        <i class="fas fa-download"></i> Download QR Image
+                    </button>
+                </div>
+            </section>
+
+            <section id="pass" class="tool-section">
+                <h2>Password Generator</h2>
+                <div class="tool-workspace">
+                    
+                    <div class="pass-options-grid">
+                        <label class="grid-label">Length: <input type="number" id="pass-length" value="12" min="4" max="30"></label>
+                        <label class="grid-label"><input type="checkbox" id="inc-upper" checked> Uppercase (A-Z)</label>
+                        <label class="grid-label"><input type="checkbox" id="inc-num" checked> Numbers (0-9)</label>
+                        <label class="grid-label"><input type="checkbox" id="inc-sym"> Symbols (!@#$)</label>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="action-btn" onclick="generatePassword()">Generate Password</button>
+                        <button class="secondary-clear-btn" onclick="clearTool('pass-result', 'pass-strength-text')">Clear</button>
+                    </div>
+                    
+                    <div class="pass-display-area" style="position: relative; margin-top: 15px;">
+                        <input type="text" id="pass-result" readonly placeholder="Generated Password">
+                        <button class="copy-btn" onclick="copyPassword()" title="Copy to Clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="strength-container">
+                        <div id="strength-bar"></div>
+                    </div>
+                    <small id="pass-strength-text">Strength: N/A</small>
+                </div>
+            </section>
+
+            <section id="unit" class="tool-section">
+                <h2>Unit Converter</h2>
+                <div class="tool-workspace">
+                    <div class="input-group" style="display: block; gap: 0;">
+                        <label for="conversion-category">Conversion Category:</label>
+                        <select id="conversion-category" onchange="updateUnitConverterDropdowns()">
+                            <option value="length">Length</option>
+                            <option value="mass">Weight/Mass</option>
+                            <option value="temperature">Temperature</option>
+                            <option value="area">Area</option>
+                            <option value="volume">Volume</option>
+                            <option value="data">Data</option>
+                            </select>
+                    </div>
+
+                    <div class="input-group" style="margin-top: 15px; align-items: flex-end;">
+                        <div style="flex: 2; min-width: 120px;">
+                            <label for="input-value">Value:</label>
+                            <input type="number" id="unit-input" placeholder="Enter value" value="1" style="margin-top: 5px;">
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 150px;">
+                            <label for="from-unit">From:</label>
+                            <select id="from-unit" style="margin-top: 5px;"></select>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 150px;">
+                            <label for="to-unit">To:</label>
+                            <select id="to-unit" style="margin-top: 5px;"></select>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="action-btn" onclick="convertUnit()">Convert</button>
+                        <button class="secondary-clear-btn" onclick="clearTool('unit-input', 'unit-result')">Clear</button>
+                    </div>
+                    <p class="result-text" id="unit-result"></p>
+                </div>
+            </section>
+            
+            <section id="img-convert" class="tool-section">
+                <h2>Image Converter</h2>
+                <div class="tool-workspace">
+                    
+                    <div id="drop-zone" class="drop-zone">
+                        <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+                        <p><i class="fas fa-cloud-upload-alt"></i> Drag & drop images here, or <span id="file-trigger">**click to select files**</span> (supports batch).</p>
+                    </div>
+
+                    <div id="file-list-container" class="file-list-container" style="display:none;">
+                        <h4>Files Ready for Conversion:</h4>
+                        <ul id="file-list"></ul>
+                    </div>
+
+                    <div class="conversion-options">
+                        <label>Convert to Format:</label>
+                        <select id="target-format">
+                            <option value="jpeg">JPEG</option>
+                            <option value="png">PNG</option>
+                        </select>
+                    </div>
+
+                    <div class="custom-features">
+                        <h4>Compression & Resizing (Optional)</h4>
+                        <div class="feature-group">
+                            <label><input type="checkbox" id="enable-resize"> Resize Image</label>
+                            <div id="resize-options" style="display:none; margin-left: 20px;">
+                                <label>Width (px): <input type="number" id="resize-width" value="800" min="10"></label>
+                                <label>Height (px): <input type="number" id="resize-height" value="600" min="10"></label>
+                            </div>
+                        </div>
+
+                        <div class="feature-group">
+                            <label>JPEG Quality (Compression):</label>
+                            <select id="jpeg-quality">
+                                <option value="0.9">High (90%)</option>
+                                <option value="0.7">Medium (70%)</option>
+                                <option value="0.5">Low (50%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="button-group" style="margin-top: 20px;">
+                        <button class="action-btn" onclick="startConversion()">Start Conversion</button>
+                        <button class="secondary-clear-btn" onclick="clearTool('file-input', 'file-list', true)">Clear All Files</button>
+                    </div>
+
+                    <p class="result-text" id="conversion-status"></p>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
