@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-site-name.netlify.app/</loc>
+    <loc>https://nexuskit-tools.netlify.app/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://your-site-name.netlify.app/age</loc>
+    <loc>https://nexuskit-tools.netlify.app/age</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-site-name.netlify.app/temp</loc>
+    <loc>https://nexuskit-tools.netlify.app/temp</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-site-name.netlify.app/qr</loc>
+    <loc>https://nexuskit-tools.netlify.app/qr</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-site-name.netlify.app/pass</loc>
+    <loc>https://nexuskit-tools.netlify.app/pass</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-site-name.netlify.app/unit</loc>
+    <loc>https://nexuskit-tools.netlify.app/unit</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-site-name.netlify.app/img-convert</loc>
+    <loc>https://nexuskit-tools.netlify.app/img-convert</loc>
     <priority>0.8</priority>
   </url>
 </urlset>

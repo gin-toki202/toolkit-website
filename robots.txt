@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nexuskit-tools.netlify.app/sitemap.xml
